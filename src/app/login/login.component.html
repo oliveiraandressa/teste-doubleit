@@ -1,0 +1,35 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 col-sm-12 h-100">
+
+        </div>
+        <div class="col-md-6 col-sm-12 bg-white container full-height">
+            <div class="row mt-5">
+                <div class="col-md-8 m-auto ">
+                    <h2 class="tk-proxima-nova">Entre.</h2>
+                    <hr class="mb-5">
+                    <input class="form-control form-control-sm my-2" placeholder="Nome" type="text" [(ngModel)]="user" >
+                    <input class="form-control form-control-sm my-2" placeholder="Senha" type="password" [(ngModel)]="password">
+                    <button class="btn btn-main btn-block" (click)="login(errorModal)">Entrar</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<ng-template #errorModal let-modal>
+    <div class="modal-header">
+        <h6 class="modal-title" id="modal-basic-title"><strong>Atenção</strong></h6>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body">
+        {{msg}}
+    </div>
+    <div class="modal-footer">
+
+        <button type="button" class="btn btn-outline-dark btn-main" (click)="modal.close('Save click')">OK</button>
+    </div>
+</ng-template>

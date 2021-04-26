@@ -1,0 +1,107 @@
+<div class="container-fluid px-5">
+    <div class="row my-3">
+        <div class="col-8">
+            <h2>Meus Produtos.</h2>
+        </div>
+        <div class="col-4 text-right">
+            <button class="btn btn-main" (click)="open(detailModal, false)">Adicionar Produto</button>
+        </div>
+        <div class="col-12">
+            <hr>
+        </div>
+    </div>
+    <div class="row my-3">
+        <div class="col-md-3 col-sm-12" *ngFor="let product of products; index as i">
+            <div class="card my-2">
+                <div class="text-right">
+                    <a class="text-right" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-v fa-lg text-default pt-3 pr-2 menu-card "></i>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" (click)="open(detailModal, i)"><span class="badge badge-pill badge-danger p-1"><i class="fas fa-pencil-alt fa-sm"></i> </span> Editar</a>
+                        <a class="dropdown-item" (click)="confirmDelete(deleteModal, i)"><span class="badge badge-pill badge-secondary p-1"><i class="fas fa-trash fa-sm"></i> </span> Excluir</a>
+                    </div>
+                </div>
+                <img class="card-img-top px-4 product-img" [src]="product.img" [alt]="'Foto do ' + product.title">
+
+                <div class="card-body">
+                    <div class="product-title">{{product.title}}</div>
+                    <p class="product-desc mt-2">{{product.desc}}</p>
+                    <div class="product-price">R$ {{product.price}}</div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <hr>
+                        </div>
+                        <div class=" mx-1" *ngFor="let category of product.categories">
+                            <button type="button" class="btn btn-main-alt badge-pill px-3">{{category}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<ng-template #detailModal let-modal>
+    <div class="modal-header">
+        <h6 class="modal-title" id="modal-basic-title"><strong>{{acaoProduto}} Produto.</strong></h6>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body">
+        <form>
+            <div class="row">
+                <div class="col-sm-12">
+                    <label class="text-muted"><small>Nome</small></label>
+                    <input class="form-control form-control-sm" name="nome" placeholder="Nome" type="text" [(ngModel)]="productName">
+                </div>
+
+                <div class="col-sm-12">
+                    <label class="text-muted"><small>Descrição</small></label>
+                    <textarea class="form-control  form-control-sm" name="desc" [(ngModel)]="productDesc"></textarea>
+                </div>
+                <div class="col-sm-6">
+                    <label class="text-muted"><small>Preço</small></label>
+                    <input class="form-control  form-control-sm" name="preco" placeholder="Preço" type="text" [(ngModel)]="productPrice">
+                </div>
+                <div class="col-sm-6">
+                    <label class="text-muted"><small>Data Remessa</small></label>
+                    <input class="form-control  form-control-sm" name="data" placeholder="Data Remessa" type="date" [(ngModel)]="productDate">
+                </div>
+                <div class="col-sm-12">
+                    
+                     <br>
+                    <div class="image-upload row text-center my-3">
+                        <br>
+                        <img [src]="productImg" style="max-width:300px;max-height:300px" class="m-auto  "/>
+                        <br>
+                        <input name="imageUrl" type="file" accept="image/*" (change)="handleInputChange($event)" class="col-12" />
+                    </div> 
+                    <br>
+
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark btn-main-alt" (click)="modal.close('Save click')">Cancelar</button>
+        <button type="button" class="btn btn-outline-dark btn-main" (click)="save()">Salvar</button>
+    </div>
+</ng-template>
+<ng-template #deleteModal let-modal>
+    <div class="modal-header">
+        <h6 class="modal-title" id="modal-basic-title"><strong>Remover Produto.</strong></h6>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body">
+        Você realmente deseja excluir esse produto?
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark btn-main-alt" (click)="modal.close('Save click')">Cancelar</button>
+        <button type="button" class="btn btn-outline-dark btn-main" (click)="deleteProduct()">Confirmar</button>
+    </div>
+</ng-template>

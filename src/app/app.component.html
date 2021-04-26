@@ -1,0 +1,22 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white px-5">
+    <a class="navbar-brand"routerLink=""><img src="\assets\images\horizontal_on_white_by_logaster.png"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+    <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/home" routerLinkActive="router-link-active">Início</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/produtos" routerLinkActive="router-link-active">Meus Produtos</a>
+            </li>
+        </ul>
+        <div class="text-right border-left h-36">
+            <img src="\assets\images\perfil.jpg" class="img-profile  mx-3">
+            <small><strong>{{name}}</strong></small>
+        </div>
+    </div>
+</nav>
+
+<router-outlet></router-outlet>
