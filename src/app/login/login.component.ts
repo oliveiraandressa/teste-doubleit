@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
       let login = this.loginService.login(this.user, this.password)
       if(login){
         this.router.navigate(['']);
+        
       }
       else{
         this.msg = "Login e/ou senha incorretos"

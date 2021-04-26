@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 
 
@@ -8,6 +9,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
+  constructor(public router: Router){}
 
 
   title = 'Andressa Oliveira - Prova Frontend';
